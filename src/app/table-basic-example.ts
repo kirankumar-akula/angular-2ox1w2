@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 declare var $: any;
@@ -8,6 +9,11 @@ declare var $: any;
   templateUrl: 'table-basic-example.html'
 })
 export class TableBasicExample implements OnInit, AfterViewInit {
+  headers = ['postId', 'Id', 'name', 'email', 'body'];
+  datas: any = [];
+
+  constructor(private http: HttpClient) {}
+
   ngOnInit() {}
 
   ngAfterViewInit() {
@@ -54,6 +60,23 @@ export class TableBasicExample implements OnInit, AfterViewInit {
         }
       });
     });
+  }
+
+  getData() {
+    this.http
+      .get('https://jsonplaceholder.typicode.com/comments')
+      .subscribe(res => {
+        this.datas = res;
+        $('#example2').DataTable({
+          destroy: true,
+          searching: false,
+          paging: false,
+          sort: false,
+          info: false,
+          scrollX: true,
+          fixedHeader: true
+        });
+      });
   }
 }
 

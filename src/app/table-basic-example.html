@@ -1,5 +1,29 @@
 <section>
 
+  <button type="button" (click)="getData()">Build Table</button>
+
+  <table id="jsonTable" class="table table-striped table-bordered" style="width:100%">
+  <thead>
+    <tr>
+      <th *ngFor="let h of headers">{{h}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of datas">
+      <td>{{t.postId}}</td>
+      <td>{{t.id}}</td>
+      <td>{{t.name}}</td>
+      <td>{{t.email}}</td>
+      <td>{{t.body}}</td>
+    </tr>
+  </tbody>
+
+  </table>
+
+
+
+  <p>******************************* ******************************* *******************************</p>
+
   <p class="version-info">Current build: Angular Version 12.1.1</p>
   <p>Reference Link : https://stackoverflow.com/questions/32216719/datatables-fixedheader-with-scrollx</p>
 
